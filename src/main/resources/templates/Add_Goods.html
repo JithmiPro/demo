@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<form action="/api/v1/Goods/saveGoods" method="post" id="frm_reg_goods">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-10">
+                    <h3><b>Register Customer</b></h3>
+                </div>
+                <div class="col-2">
+                    <input type="submit" value="Save" >
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row"><input type="text" name="g_name" th:name="g_name" class="form"></div>
+            <div class="row"><input type="text" name="g_code" th:name="g_code" class="form"></div>
+            <div class="row"><input type="datetime-local" name="g_RegDate" th:name="g_RegDate" class="form"></div>
+            <div class="row"><input type="number" name="qty" th:name="qty"></div>
+        </div>
+    </div>
+
+</form>
+</body>
+</html>

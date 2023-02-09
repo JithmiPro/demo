@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="/api/v1/Pick/savePicks" method="post" id="frm_reg_cust">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-10">
+                    <h3><b>Picks</b></h3>
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-success" onclick="SaveForm();">
+                        Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <select name="cus_list" th:name="cus_list">
+                    <option value="na">-Select Customer-</option>
+                </select>
+            </div>
+            <hr>
+            <div class="row">&nbsp;&nbsp;&nbsp;&nbsp;<h5> Item list </h5>&nbsp;&nbsp;<br>
+                <button type="button" id="Add" class="btn btn-dark">+</button>
+                <button type="button" id="Remove" class="btn btn-dark">-</button>
+            </div>
+            <br>
+            <div id="textboxDiv0" class='row'>
+                <div class="row">
+                    <select name="g_name_list" th:name="g_name_list">
+                        <option value="na">-Select Customer-</option>
+                    </select>
+                    <input type="number" name="qty" th:name="qty">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<b>
+    <hr>
+</b>
+<table>
+    <tr>
+        <th>Product</th>
+        <th>Product Request qty</th>
+        <th>Product Existing qty</th>
+    </tr>
+    <tr>
+        <td>
+            <select>
+                <option></option>
+            </select>
+        </td>
+        <td><input type="number"></td>
+        <td><input type="number"></td>
+    </tr>
+</table>
+
+
+<script>
+    var clicks = 1;
+
+    function onClickAdd() {
+        clicks += 1;
+    };
+
+    function onClickRemove() {
+        clicks -= 1;
+    };
+
+    var i = 0;
+
+    $(document).ready(function () {
+        $("#Add").on("click", function () {
+            var original = document.getElementById('textboxDiv0');
+            var clone = original.cloneNode(true);
+            clone.id = "duplicetor" + i++;
+
+            clone.querySelectorAll('.form-control').forEach(el => {
+                el.name = el.name.replace(`${clone.id-1}`, `${i}`)
+                alert( "**"+el.name+"--"+i );
+            })
+
+            $("#textboxDiv").append(clone);
+            onClickAdd();
+        });
+
+        $("#Remove").on("click", function () {
+            $("#textboxDiv").children().last().remove();
+            onClickRemove();
+        });
+    });
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
